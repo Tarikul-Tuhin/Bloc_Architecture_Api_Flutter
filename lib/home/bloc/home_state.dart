@@ -20,3 +20,15 @@ class HomeLoadedState extends HomeState {
   // TODO: implement props
   List<Object?> get props => [activityName, activityType, key];
 }
+
+class MembersHomeLoadedState extends HomeState {
+  final String memberName;
+  final String memberRole;
+  final List<dynamic> active;
+
+  MembersHomeLoadedState(this.memberName, this.memberRole, this.active);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [memberName, memberRole, active];
+}

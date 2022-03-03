@@ -1,5 +1,6 @@
 import 'package:bloc_exercise/home/bloc/home_bloc.dart';
 import 'package:bloc_exercise/services/boardService.dart';
+import 'package:bloc_exercise/services/getMembersService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,9 +11,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Yes');
     return BlocProvider(
       create: (context) => HomeBloc(
         RepositoryProvider.of<BoardService>(context),
+        RepositoryProvider.of<GetMembersList>(context),
       )..add(LoadApiEvent()),
       child: Scaffold(
         appBar: AppBar(
@@ -23,38 +26,71 @@ class HomePage extends StatelessWidget {
             if (state is HomeLoadingState) {
               return const CircularProgressIndicator();
             }
-            if (state is HomeLoadedState) {
-              return Center(
+            // if (state is HomeLoadedState) {
+            //   return Center(
+            //     child: Column(
+            //       children: [
+            //         Text(state.activityName),
+            //         Text(state.activityType),
+            //         Text(
+            //           state.key,
+            //         ),
+            //         FutureBuilder(
+            //             future: BoardService().getBoardActivity(),
+            //             builder: (context, snapshot) {
+            //               return ListView.builder(
+            //                   shrinkWrap: true,
+            //                   itemCount: 2,
+            //                   itemBuilder: (context, index) {
+            //                     return Card(
+            //                       color: Colors.blue[200],
+            //                       child: ListTile(
+            //                         title: Text(state.activityName),
+            //                       ),
+            //                     );
+            //                   });
+            //             }),
+            //         ListTile(
+            //           title: Text(state.activityName),
+            //         ),
+            //         ElevatedButton(
+            //           onPressed: () => BlocProvider.of<HomeBloc>(context)
+            //               .add(LoadApiEvent()),
+            //           child: const Icon(Icons.refresh),
+            //         ),
+            //       ],
+            //     ),
+            //   );
+            // }
+
+            if (state is MembersHomeLoadedState) {
+              print(state);
+              return SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(state.activityName),
-                    Text(state.activityType),
-                    Text(
-                      state.key,
-                    ),
                     FutureBuilder(
-                        future: BoardService().getBoardActivity(),
+                        future: GetMembersList().getMembers('MeI420'),
                         builder: (context, snapshot) {
                           return ListView.builder(
                               shrinkWrap: true,
-                              itemCount: 2,
+                              itemCount: state.active.length,
                               itemBuilder: (context, index) {
                                 return Card(
                                   color: Colors.blue[200],
                                   child: ListTile(
-                                    title: Text(state.activityName),
+                                    title: Text(state.active[index].name),
+                                    subtitle:
+                                        Text(state.active[index].memberRole),
                                   ),
                                 );
                               });
                         }),
-                    ListTile(
-                      title: Text(state.activityName),
-                    ),
                     ElevatedButton(
-                      onPressed: () => BlocProvider.of<HomeBloc>(context)
-                          .add(LoadApiEvent()),
-                      child: const Icon(Icons.refresh),
-                    ),
+                        onPressed: () {
+                          BlocProvider.of<HomeBloc>(context)
+                              .add(LoadApiEvent());
+                        },
+                        child: Text('reload')),
                   ],
                 ),
               );
