@@ -2,6 +2,7 @@
 //
 //     final welcome = welcomeFromJson(jsonString);
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart';
@@ -55,6 +56,28 @@ class BoardService {
     final response =
         await get(Uri.parse('https://www.boredapi.com/api/activity/'));
     final activity = welcomeFromJson(response.body);
+    //print(activity);
     return activity;
   }
 }
+
+// class YourBloc {
+//
+//   // Create a stream to send processed data to the UI
+//   final StreamController _someController = StreamController();
+//
+//   Stream get someStream => _someController.stream;
+//
+//   // Get the data from API, then send the data to stream here. Usually an async function
+//    loadData() async {
+//     final data = await BoardService().getBoardActivity(); // Get data from API
+//     //var processedData = processYourData(data);
+//     print(someStream);
+//     return _someController.add(data);
+//   }
+//
+//   dispose() {
+//     _someController.close();
+//   }
+// }
+

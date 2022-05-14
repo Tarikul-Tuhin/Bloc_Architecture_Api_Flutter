@@ -9,3 +9,15 @@ class LoadApiEvent extends HomeEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
+class LoadApiEvent2 extends HomeEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
+// class counterApiEvent extends HomeEvent {
+//   @override
+//   // TODO: implement props
+//   List<Object?> get props => [];
+// }
+

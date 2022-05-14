@@ -1,4 +1,7 @@
+import 'package:bloc_exercise/home/bloc/home_bloc.dart';
+import 'package:bloc_exercise/home/home4.dart';
 import 'package:bloc_exercise/services/boardService.dart';
+import 'package:bloc_exercise/testing_mediaQuery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,19 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MultiRepositoryProvider(
+    return 
+      MultiBlocProvider(
         providers: [
-          RepositoryProvider(
-            create: (context) => BoardService(),
-          ),
+            BlocProvider(create: (context) => HomeBloc()..add(LoadApiEvent())),
         ],
-        child: HomePage(),
-      ),
-    );
+        child: MaterialApp(home: TestApi()),
+      );
+    
   }
 }

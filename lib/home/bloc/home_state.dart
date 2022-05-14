@@ -10,13 +10,24 @@ class HomeLoadingState extends HomeState {
 }
 
 class HomeLoadedState extends HomeState {
+  
+
+
   final String activityName;
   final String activityType;
   final String key;
+  //XFile img;
 
-  HomeLoadedState(this.activityName, this.activityType, this.key);
+
+
+
+
+  HomeLoadedState(this.activityName, this.activityType, this.key, );
+
 
   @override
+
   // TODO: implement props
   List<Object?> get props => [activityName, activityType, key];
 }
+
