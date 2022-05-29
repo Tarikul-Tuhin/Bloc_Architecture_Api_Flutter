@@ -21,6 +21,8 @@ class _PaginatedDataTableesState extends State<PaginatedDataTablees> {
 
   final DataTableSource _data = MyData();
 
+  var today =  DateTime.now();
+
   static const double topViewHeight = 50.0;
   static const double paginateDataTableHeaderRowHeight = 35.0;
   static const double pagerWidgetHeight = 56;
@@ -76,12 +78,15 @@ class _PaginatedDataTableesState extends State<PaginatedDataTablees> {
                             rows.add(row);
                           }
                           String csv = const ListToCsvConverter().convert(rows);
+                          String a = 'ID,Name,Price,Example1,Example2,Example3,Example4\n' + csv ;
 
                           AnchorElement()
-                            ..href = '${Uri.dataFromString(csv, mimeType: 'text/csv', encoding: utf8)}'
-                            ..download = 'file.csv'
+                            ..href = '${Uri.dataFromString(a, mimeType: 'text/csv', encoding: utf8)}'
+                            ..download = '$today.csv'
                             ..style.display = 'none'
                             ..click();
+
+
 
 
 
