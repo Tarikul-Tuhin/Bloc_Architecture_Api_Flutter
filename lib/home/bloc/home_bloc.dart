@@ -48,9 +48,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
         on<LoadApiEvent2>((event, emit) async {
-      ImagePicker pic = ImagePicker();
+     // ImagePicker pic = ImagePicker();
 
-      XFile? image = await pic.pickImage(source: ImageSource.gallery);
+     // XFile? image = await pic.pickImage(source: ImageSource.gallery);
      
 
 
@@ -59,8 +59,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // final StreamSubscription t;
 
       // await emit.forEach(stream, onData: HomeLoadedState(activity.activity, activity.type, activity.key));
+
+      if(event is LoadApiEvent2){
+        print('object');
+        emit(HomeLoadedState(activity.activity, activity.type, activity.key));
+      }
  
-     emit(HomeLoadedState(activity.activity, activity.type, activity.key));
+     else{
+       emit(HomeLoadedState2());
+     print('Yerag');
+     }
+     
 
        
       

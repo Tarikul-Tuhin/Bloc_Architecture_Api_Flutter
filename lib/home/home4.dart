@@ -21,7 +21,7 @@ class _TestApiState extends State<TestApi> {
           children: [
             BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
-                if(state is HomeLoadedState){
+                if(state is HomeLoadedState2){
                   print('yes');
                 
                 }
@@ -32,7 +32,7 @@ class _TestApiState extends State<TestApi> {
 
                         //BlocProvider.of<HomeBloc>(context).add(LoadApiEvent());
                       },
-                      child: Text('Select Image')),
+                      child: const Text('Select Image')),
                 );
               },
             ),

@@ -31,3 +31,15 @@ class HomeLoadedState extends HomeState {
   List<Object?> get props => [activityName, activityType, key];
 }
 
+
+
+class HomeLoadedState2 extends HomeState {
+  
+  HomeLoadedState2();
+
+
+  @override
+
+  // TODO: implement props
+  List<Object?> get props => [];
+}
